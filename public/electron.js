@@ -1,12 +1,27 @@
 const electron = require('electron');
 const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const {  Notification, BrowserWindow, ipcMain } = electron
 
 const path = require('path');
 // const url = require('url');
 const isDev = require('electron-is-dev');
 
 let mainWindow;
+
+
+const sendNotification = (data) => {
+  console.log(data)
+  let iconAddress = path.join(__dirname, '/icon.png');
+  const notif={
+    title: data.title,
+    body: data.body,
+    icon: iconAddress
+  };
+  new Notification(notif).show();
+
+}
+
+
 
 function createWindow() {
   mainWindow = new BrowserWindow(
@@ -18,7 +33,8 @@ function createWindow() {
       backgroundColor: "#1A202C",
       show: false,
       webPreferences: {
-        worldSafeExecuteJavaScript: true
+        worldSafeExecuteJavaScript: true,
+        nodeIntegration: true
       }
     }
   );
@@ -40,3 +56,9 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+ipcMain.on("send-notification", (event, data) => {
+  console.log(data)
+  console.log(event)
+  sendNotification(data);
+})

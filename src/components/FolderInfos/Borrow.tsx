@@ -77,9 +77,9 @@ let Borrow: React.FC<BorrowProps> = ({ className, onBorrow, details, exit, visib
   const datepickerStyles = {
     width: "100%",
     background: "var(--input-background)",
-    "margin-bottom": "30px",
+    "marginBottom": "10px",
     color: "white",
-    "border-radius": "10px"
+    "borderRadius": "10px"
   }
 
   
@@ -112,7 +112,7 @@ let Borrow: React.FC<BorrowProps> = ({ className, onBorrow, details, exit, visib
               className={className}>
               <form onSubmit={handleSubmit(onSubmit)}>
 
-                <Label className="label-validity">date de validité</Label>
+                <Label className="label-validity">date de retour</Label>
                 <vaadin-date-picker
                   theme="overlay-style"
                   id="date-picker"
@@ -169,11 +169,11 @@ Borrow = styled(Borrow)`
 
   filter: drop-shadow(0px -5px 4px rgba(0, 0, 0, 0.5));
   & .input-element{
-    margin-bottom: 26px;
+    margin-bottom: 20px;
   }
   & .borrow-button{
     width: 120px;
-    margin-top: 70px;
+    margin-top: 2.5rem;
     margin-left: auto;
   }
 

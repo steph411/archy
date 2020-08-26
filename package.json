@@ -1,6 +1,7 @@
 {
   "name": "archy",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "author": "Etaba Andela lionel stephane",
   "main": "public/electron.js",
   "private": true,
   "dependencies": {
@@ -60,13 +61,22 @@
       "icon": "public/icon.png"
     },
     "win": {
-      "icon": "public/icon.png"
+      "icon": "public/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
-    "directories":{
+    "directories": {
       "buildResources": "assets"
     }
   },

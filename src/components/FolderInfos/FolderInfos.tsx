@@ -28,6 +28,7 @@ interface FolderInfoProps {
 let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
 
 
+  console.log(box);
   const { addBox, editBox } = useBoxStore((state) => ({
     addBox: state.addBox,
     editBox: state.editBox,
@@ -44,7 +45,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
     toggleBorrowWindow: state.toggleBorrowWindow,
     toggleBoxInfo: state.toggleBoxInfo,
     resetSelectedBox: state.resetSelectedBox,
-    setSelectedBox: state.setSelectedBox
+    // setSelectedBox: state.setSelectedBox
   }))
 
   // when the component is removed from the dom, save the changes
@@ -67,6 +68,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
     else if (box && box.status === Status.EMPRUNTE) {
       return "détails"
     }
+    else return "détails"
   }
   
   const [buttonText, setbuttonText] = useState(initialButtonText());
@@ -84,7 +86,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
   const [documents, setDocuments] = useState<string[]>(box?.documents || initialDocuments);
   
   const onChange = (event: React.ChangeEvent<HTMLInputElement>)=> {
-    console.log(event)
+    // console.log(event)
     
   }
   
@@ -110,7 +112,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
     const datepicker = datepickerRef;
     // const docs = documents;
     return () => {
-      console.log({ documents })
+      // console.log({ documents })
       if (box) {
         let actualBox = useBoxStore.getState().boxes.find((el: Box) => el.id === box.id)
         console.log({ actualBox })
@@ -124,7 +126,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
           status: actualBox.status,
 
         }
-        console.log(editedBox);
+        // console.log(editedBox);
         editBox(editedBox);
         // resetSelectedBox();
       }
@@ -142,11 +144,11 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
     const defaultValidity = () => {
       const date = new Date();
       date.setDate(date.getDate() + 30);
-      return date.toISOString();
+      return date.toISOString().split("T")[0];
     }
     const newBox: Box = {
       id: uuid4(),
-      dateAdded: dateAdded.toISOString(),
+      dateAdded: dateAdded.toISOString().split("T")[0],
       name: data.name,
       dateValidity: datepickerRef.current?.value || defaultValidity(),
       status:  Status.PRESENT,
@@ -156,7 +158,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
       newBox.status = Status.INVALIDE;
     }
     // newBox.dateValidity 
-    console.log(newBox);
+    // console.log({newBox});
     addBox(newBox)
     toggleBoxInfo();
 
@@ -177,7 +179,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
       status: Status.EMPRUNTE
 
     }
-    console.log(editedBox);
+    // console.log(editedBox);
     editBox(editedBox);
     // setSelectedBox(editedBox);
     setbuttonText("détails");
