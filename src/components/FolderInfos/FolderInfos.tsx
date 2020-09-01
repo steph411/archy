@@ -118,7 +118,7 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
         console.log({ actualBox })
         const editedBox: Box = {
           ...actualBox,
-          name: watch("name"),
+          name: watch("name") || actualBox.name,
           dateAdded: actualBox.dateAdded,
           dateValidity: (datepicker.current.value) || box.dateValidity,
           id: actualBox.id,
@@ -126,7 +126,8 @@ let FolderInfo: React.FC<FolderInfoProps> = ({className, box, exit}) => {
           status: actualBox.status,
 
         }
-        // console.log(editedBox);
+
+        console.log(editedBox);
         editBox(editedBox);
         // resetSelectedBox();
       }
