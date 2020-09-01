@@ -27,3 +27,14 @@ and [**styled components**](https://styled-components.com) for components stylin
 
 
 ![](archy1.png "archy box infos")
+
+
+### Setup
+```
+yarn install or npm install to install dependencies
+
+yarn electron-dev or npm run electron-dev to launch for development
+
+yarn electron-pack or npm run electon-pack  to Build
+
+```
